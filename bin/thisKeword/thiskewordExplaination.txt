@@ -1,0 +1,145 @@
+'this' keyword is a refernce variable, which refers the Object.
+
+Uses of 'this keyword':-
+	1--> to refer current class instance variable
+	2--> to invoke current class method
+	3--> to invoke current class Constructor by using parenthesis this ()
+	4--> to pass an arguement in the method call
+	5--> to pass an arguement in the Constrctor call
+	6--> to return the Current class instance from the Method
+	------------------------------------------------------------
+	case-1 : To refer current class instance variable
+		class ThisDemo {
+	int i; // i is Instance variable
+
+	void setValue(int i) {
+		this.i = i;
+	}
+
+	void showValue() {
+		System.out.println("Value of i : " + i);
+	}
+}
+
+public class ThisKeyword_01 {
+	public static void main(String[] args) {
+		ThisDemo t= new ThisDemo();
+		t.setValue(100);
+		t.showValue();
+	}
+}
+------------------------------------------------------------------
+	case 2: to invoke current class method
+	
+	class ThisDemo_02 {
+
+	void display() {
+		System.out.println("hello , i'm Display method");
+	}
+
+	void show() {
+		//display(); // if we don't use this keyword , compiler automatically adds this keyword  while invoking the method
+		this.display();
+		/*
+		 * display and this.display , both are same
+		 */
+		System.out.println("I'm Show method");
+	}
+}
+
+public class ThisKeyword_02 {
+	public static void main(String[] args) {
+		ThisDemo_02 td2= new ThisDemo_02();
+		td2.show();
+	}
+	
+	
+}
+	
+	
+	--------------------------------------------------------
+	Case 3: to invoke current class Constructor
+	
+	class ThisDemo_03 {
+
+	public ThisDemo_03() {
+		//Step-4 , we will call parameterized constructpr by Default constructor
+		this(20);
+		System.out.println("Default Constructor");
+	}
+
+	public ThisDemo_03(int x) {
+		//Step-3 we will call default constructor by Paramaterized Constructor, so we'll use 'this()'
+		//this();
+		System.out.println("parameterized constructor : " + x );
+	}
+
+}
+
+public class ThisKeyword_03 {
+	public static void main(String[] args) {
+	//	ThisDemo_03 td3= new ThisDemo_03(); // This line will call Default Constructor ,	Step-1
+		//ThisDemo_03 td3_1= new ThisDemo_03(10); // This line will call Parameterixed Constructor, Step-2
+		ThisDemo_03 td3= new ThisDemo_03(); //Step-5
+	}
+}
+
+------------------------------------------------------------
+case 4:   to pass an arguement in the method call
+
+class ThisDemo_04 {
+	void m1(ThisDemo_04 td) { // we create a refernce of class in method i.e ThisDemo_04 class and td4 is
+								// reference
+		System.out.println("I'm in m1 method");
+	}
+
+	void m2() {
+		m1(this); // we are pass this as an " arguement in the method "
+		//Method k andar main , this keyword ko as an arguement pass krwa skta hoon.
+	}
+}
+
+public class ThisKeyword_04 {
+
+	public static void main(String[] args) {
+		ThisDemo_04 td4 = new ThisDemo_04();
+		td4.m2();
+	//	td4.m1(null);
+	}
+
+}
+--------------------------------------------------------------------
+case 5:  to pass an arguement in the Constrctor call
+
+	 class ThisDemo_05 {
+
+	public ThisDemo_05(ThisKeyword_05 td) {
+		System.out.println("ThisDemo_05 class Constructor");
+	}
+
+}
+
+public class ThisKeyword_05 {
+	void m1() {
+		ThisDemo_05 tdM1 = new ThisDemo_05(this); //this keywprd can be used to pass as an arguement in the Constructor call 
+	}
+
+	public static void main(String[] args) {
+		ThisKeyword_05 td5 = new ThisKeyword_05();
+		td5.m1();
+	}
+}----------------------------------------------------------------------
+Case 6:  to return the Current class instance from the Method
+class CurrentClassInstance {
+	CurrentClassInstance m1() {
+		
+		return this;
+	}
+}
+
+public class ThisKeyword_06 {
+	public static void main(String[] args) {
+		CurrentClassInstance td6= new CurrentClassInstance();
+		td6.m1();
+	}
+}
